@@ -37,11 +37,11 @@
         }
 
     </style>
-    <title>thugOfWarGame</title>
+    <title>tugOfWarGame</title>
 </head>
 <body>
     <header>
-        <h1>Your favourite Thug of War game!</h1>
+        <h1>Your favourite Tug of War game!</h1>
     </header>
     <main>
         <div>
@@ -52,8 +52,8 @@
             <button id="playerTwo">I am stronger!!</button>
         </div>
         <div>
-            <p id="playerOneWins">player 1 win counter:</p>
-            <p id="playerTwoWins">player 2 win counter:</p>
+            <p>player 1 win counter:</p><p id="playerOneWins"></p>
+            <p>player 2 win counter:</p><p id="playerTwoWins"></p>
             <button id="reset">Reset Game</button>
             <button id="resetWins">Reset Wins</button>
         </div>
@@ -80,48 +80,33 @@ let winsforPlayer1 = 0;
 
 let winsforPlayer2 = 0;
 
-button.onclick = () => {
-    
+button.onclick = () => {   
    
-    count += 1;
+  count += 1;
 
-    if (count === 10){
-        button.innerHTML = "You won! ";
-        button2.innerHTML = "You are a weak-sauce!";
-        winsforPlayer1 ++;
-        win1.innerHTML += winsforPlayer1;
-        button.classList.add("won");
-        button2.classList.add("lost");
- }
+  if (count === 10){
+      button.innerHTML = "You won! ";
+      button2.innerHTML = "You are a weak-sauce!";
+      winsforPlayer1 ++;
+      win1.innerHTML = winsforPlayer1;
+      button.classList.add("won");
+      button2.classList.add("lost");
+  }
     
 };
 
-button2.onclick = () => {
-    
-    // if (event.key == "a"){
+button2.onclick = () => {  
 
-        count2 += 1;
+  count2 += 1;
    
-        if (count2 === 10){
-            button2.innerHTML = "You won! ";
-            button.innerHTML = "You are a weak-sauce!";
-            winsforPlayer2 ++;
-            win2.innerHTML += winsforPlayer2;
-            button2.classList.add("won");
-            button.classList.add("lost");
-        }
-
-
-
-    // }
-
-//  count2 += 1;
-   
-//  if (count2 === 10){
-//     button2.innerHTML = "You won! ";
-//     winsforPlayer2 ++;
-//     win2.innerHTML += winsforPlayer2;
-//  }
+  if (count2 === 10){
+      button2.innerHTML = "You won! ";
+      button.innerHTML = "You are a weak-sauce!";
+      winsforPlayer2 ++;
+      win2.innerHTML = winsforPlayer2;
+      button2.classList.add("won");
+      button.classList.add("lost");
+  }
        
 };
 
@@ -146,10 +131,9 @@ resetWins.onclick = () =>{
     button2.innerHTML = "I am stronger!!";
     
     winsforPlayer1 = 0;
-    win1.innerHTML = "player 1 win counter:";
-
+    win1.innerHTML = "";
     winsforPlayer2 = 0;
-    win2.innerHTML = "player 2 win counter:";
+    win2.innerHTML = "";
 
     button.classList.remove("won", "lost");
     button2.classList.remove("lost", "won");
