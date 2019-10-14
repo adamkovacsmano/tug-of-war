@@ -1,2 +1,2 @@
-# thugOfWarGame
+# tugOfWarGame
 _nology challenge
