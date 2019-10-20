@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body{
+            background-color: aquamarine;
+        }
+
+        header{
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2em;
+        }
+
+        h1{
+            border: 2px dashed white;
+            padding: 10px;
+        }
+
+        section{
+            text-align: center;
+            padding: 10px;
+       }
+
+       p{
+           padding: 10px;
+           color: white;
+           font-size: 2em;
+       }
+
+       button{
+           padding: 10px;
+           background-color: transparent;
+           border: 3px dotted white;
+           cursor: pointer;
+       }
+
         #rope{
             border: 1px solid black;
             width: 100px;
@@ -34,17 +73,20 @@
             left: 80%;
             transform: translateX(-50%);
         }
+
     </style>
     <title>tugOfWar</title>
 </head>
 <body>
     <header>
-
+        <h1>Tug of War: the game</h1>
     </header>
     <main>
-        <p>player1 wins: <span id="pc1">0</span></p>
-        <p>player2 wins: <span id="pc2">0</span></p>
-        <button id="reset">reset game</button>
+        <section>
+            <p>player1 wins: <span id="pc1">0</span></p>
+            <p>player2 wins: <span id="pc2">0</span></p>
+            <button id="reset">reset game</button>
+        </section>
         <div id="leftLine"></div>
         <div id="rightLine"></div>
         <div id="rope"></div>
@@ -62,6 +104,7 @@
 
     const resetRope = () => {
         left = 50;
+        rope.style.left = `50%`
     }   
 
     const resetGame = () => {
@@ -74,17 +117,17 @@
 
     resetButton.addEventListener("click", resetGame); 
 
-    const removePosition = () => {
+    const minusOffset = () => {
       left -= 1;
       rope.style.left = `${left}%`;
       if(left === 20){
+        resetRope();
         player1Counter += 1;
         player1Wins.innerHTML = player1Counter;
-        resetRope();
       }
     }
 
-    const addPosition = () => {
+    const addOffset = () => {
       left += 1;
       rope.style.left = `${left}%`;
       if(left === 80){
@@ -97,10 +140,10 @@
     document.onkeydown = keypressed => {
 
         if(keypressed.key === "a"){
-            removePosition();
+            minusOffset();
             console.log(left);
         } else if(keypressed.key === "d"){
-            addPosition();
+            addOffset();
             console.log(left);
         }
     }
