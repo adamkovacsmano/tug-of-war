@@ -5,143 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        *{
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-        h1{
-            background-color: saddlebrown;
-            color: white;
-        }
-
-        span{
-            color: brown;
+        #rope{
+            border: 1px solid black;
+            width: 100px;
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        header{
-            text-align: center;
+        #leftLine{
+            border: 1px solid black;
+            width: 20px;
+            height: 100px;
+            position: absolute;
+            top: 45%;
+            left: 20%;
+            transform: translateX(-50%);
         }
 
-        main{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+        #rightLine{
+            border: 1px solid black;
+            width: 20px;
+            height: 100px;
+            position: absolute;
+            top: 45%;
+            left: 80%;
+            transform: translateX(-50%);
         }
-
-        .won{
-            color: Green;
-        }
-
-        .lost{
-            color: red;
-        }
-
     </style>
-    <title>tugOfWarGame</title>
+    <title>tugOfWar</title>
 </head>
 <body>
     <header>
-        <h1>Your favourite Tug of War game!</h1>
+
     </header>
     <main>
-        <div>
-            <h2>whoever reaches 10 clicks faster wins the game!</h2>
-            <h3>click on the buttons to pull the rope:</h3>
-            <button id="playerOne">I am strong!!</button>
-            <span>&----------------------------------------I am the rope!----------------------------------------&</span>
-            <button id="playerTwo">I am stronger!!</button>
-        </div>
-        <div>
-            <p>player 1 win counter:</p><p id="playerOneWins"></p>
-            <p>player 2 win counter:</p><p id="playerTwoWins"></p>
-            <button id="reset">Reset Game</button>
-            <button id="resetWins">Reset Wins</button>
-        </div>
+        <p>player1 wins: <span id="pc1">0</span></p>
+        <p>player2 wins: <span id="pc2">0</span></p>
+        <button id="reset">reset game</button>
+        <div id="leftLine"></div>
+        <div id="rightLine"></div>
+        <div id="rope"></div>
     </main>   
 </body>
 <script>
-   
 
-let button = document.getElementById("playerOne");
-let button2 = document.getElementById("playerTwo");
-let win1 = document.getElementById("playerOneWins");
-let win2 = document.getElementById("playerTwoWins");
-let reset = document.getElementById("reset");
-let resetWins = document.getElementById("resetWins");
+    let rope = document.getElementById("rope");
+    let player1Wins = document.getElementById("pc1");
+    let player2Wins = document.getElementById("pc2");
+    let resetButton = document.getElementById("reset");
+    let left = 50;
+    let player1Counter = 0;
+    let player2Counter = 0;
+
+    const resetRope = () => {
+        left = 50;
+    }   
+
+    const resetGame = () => {
+        player1Counter = 0;
+        player2Counter = 0;
+        player1Wins.innerHTML = "0";
+        player2Wins.innerHTML = "0";
+        resetRope();
+    }
+
+    resetButton.addEventListener("click", resetGame); 
+
+    const removePosition = () => {
+      left -= 1;
+      rope.style.left = `${left}%`;
+      if(left === 20){
+        player1Counter += 1;
+        player1Wins.innerHTML = player1Counter;
+        resetRope();
+      }
+    }
+
+    const addPosition = () => {
+      left += 1;
+      rope.style.left = `${left}%`;
+      if(left === 80){
+        player2Counter += 1;
+        player2Wins.innerHTML = player2Counter;
+        resetRope();
+      }
+    }
     
+    document.onkeydown = keypressed => {
 
-// --------------------------> counter for both players
-
-let count = 0;
-
-let count2 = 0;
-
-let winsforPlayer1 = 0;
-
-let winsforPlayer2 = 0;
-
-button.onclick = () => {   
-   
-  count += 1;
-
-  if (count === 10){
-      button.innerHTML = "You won! ";
-      button2.innerHTML = "You are a weak-sauce!";
-      winsforPlayer1 ++;
-      win1.innerHTML = winsforPlayer1;
-      button.classList.add("won");
-      button2.classList.add("lost");
-  }
-    
-};
-
-button2.onclick = () => {  
-
-  count2 += 1;
-   
-  if (count2 === 10){
-      button2.innerHTML = "You won! ";
-      button.innerHTML = "You are a weak-sauce!";
-      winsforPlayer2 ++;
-      win2.innerHTML = winsforPlayer2;
-      button2.classList.add("won");
-      button.classList.add("lost");
-  }
-       
-};
-
-// --------------------------------> clear counts
-
-reset.onclick = () =>{
-
-    count = 0;
-    count2 = 0;
-    button.innerHTML = "I am strong!!";
-    button2.innerHTML = "I am stronger!!";
-    button.classList.remove("won", "lost");
-    button2.classList.remove("lost", "won");
-
-}
-
-resetWins.onclick = () =>{
-    
-    count = 0;
-    count2 = 0;
-    button.innerHTML = "I am strong!!";
-    button2.innerHTML = "I am stronger!!";
-    
-    winsforPlayer1 = 0;
-    win1.innerHTML = "";
-    winsforPlayer2 = 0;
-    win2.innerHTML = "";
-
-    button.classList.remove("won", "lost");
-    button2.classList.remove("lost", "won");
-
-}
-
-
-
+        if(keypressed.key === "a"){
+            removePosition();
+            console.log(left);
+        } else if(keypressed.key === "d"){
+            addPosition();
+            console.log(left);
+        }
+    }
 
 
 </script>
