@@ -5,73 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        *{
+        * {
             margin: 0px;
             padding: 0px;
         }
 
-        body{
+        body {
             background-color: aquamarine;
         }
 
-        header{
+        header {
             color: white;
             text-align: center;
             padding: 20px;
             font-size: 2em;
         }
 
-        h1{
+        h1 {
             border: 2px dashed white;
             padding: 10px;
+            -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.664);
         }
 
-        section{
+        section {
             text-align: center;
             padding: 10px;
        }
 
-       p{
+       p {
            padding: 10px;
            color: white;
-           font-size: 2em;
+           font-size: 1.5em;
        }
 
-       button{
+       button {
            padding: 10px;
-           background-color: transparent;
-           border: 3px dotted white;
+           background-color: white;
+           border: 4px dotted aquamarine;
            cursor: pointer;
+           color: aquamarine;
+           font-size: 1.2em;
        }
 
-        #rope{
-            border: 1px solid black;
+        #rope {
             width: 100px;
             height: 20px;
             position: absolute;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        #leftLine{
-            border: 1px solid black;
+        #leftLine {
             width: 20px;
             height: 100px;
             position: absolute;
-            top: 45%;
+            top: 50%;
             left: 20%;
             transform: translateX(-50%);
         }
 
-        #rightLine{
-            border: 1px solid black;
+        #rightLine {
             width: 20px;
             height: 100px;
             position: absolute;
-            top: 45%;
+            top: 50%;
             left: 80%;
             transform: translateX(-50%);
+        }
+
+        .ropestyle {
+          background-color: white;
         }
 
     </style>
@@ -83,13 +87,13 @@
     </header>
     <main>
         <section>
-            <p>player1 wins: <span id="pc1">0</span></p>
-            <p>player2 wins: <span id="pc2">0</span></p>
+            <p>player1(key: "a") wins: <span id="pc1">0</span></p>
+            <p>player2(key: "d") wins: <span id="pc2">0</span></p>
             <button id="reset">reset game</button>
         </section>
-        <div id="leftLine"></div>
-        <div id="rightLine"></div>
-        <div id="rope"></div>
+        <div class="ropestyle" id="leftLine"></div>
+        <div class="ropestyle" id="rightLine"></div>
+        <div class="ropestyle" id="rope"></div>
     </main>   
 </body>
 <script>
