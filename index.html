@@ -1,99 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <style>
-        *{
-            margin: 0px;
-            padding: 0px;
-        }
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
 
-        body{
-            background-color: aquamarine;
-        }
+      body {
+        background-color: rgb(37, 37, 170);
+      }
 
-        header{
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 2em;
-        }
+      header {
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 2em;
+      }
 
-        h1{
-            border: 2px dashed white;
-            padding: 10px;
-        }
+      h1 {
+        border: 2px dashed white;
+        padding: 10px;
+      }
 
-        section{
-            text-align: center;
-            padding: 10px;
-       }
+      section {
+        text-align: center;
+        padding: 10px;
+      }
 
-       p{
-           padding: 10px;
-           color: white;
-           font-size: 2em;
-       }
+      p {
+        padding: 10px;
+        color: white;
+        font-size: 2em;
+      }
 
-       button{
-           padding: 10px;
-           background-color: transparent;
-           border: 3px dotted white;
-           cursor: pointer;
-       }
+      button {
+        padding: 10px;
+        background-color: transparent;
+        border: 3px dotted white;
+        cursor: pointer;
+        color: white;
+      }
 
-        #rope{
-            border: 1px solid black;
-            width: 100px;
-            height: 20px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+      #rope {
+        border: 1px solid white;
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-        #leftLine{
-            border: 1px solid black;
-            width: 20px;
-            height: 100px;
-            position: absolute;
-            top: 45%;
-            left: 20%;
-            transform: translateX(-50%);
-        }
+      #leftLine {
+        border: 1px solid white;
+        width: 20px;
+        height: 100px;
+        position: absolute;
+        top: 45%;
+        left: 20%;
+        transform: translateX(-50%);
+      }
 
-        #rightLine{
-            border: 1px solid black;
-            width: 20px;
-            height: 100px;
-            position: absolute;
-            top: 45%;
-            left: 80%;
-            transform: translateX(-50%);
-        }
-
+      #rightLine {
+        border: 1px solid white;
+        width: 20px;
+        height: 100px;
+        position: absolute;
+        top: 45%;
+        left: 80%;
+        transform: translateX(-50%);
+      }
     </style>
     <title>tugOfWar</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Tug of War: the game</h1>
+      <h1>Tug of War: the game</h1>
     </header>
     <main>
-        <section>
-            <p>player1 wins: <span id="pc1">0</span></p>
-            <p>player2 wins: <span id="pc2">0</span></p>
-            <button id="reset">reset game</button>
-        </section>
-        <div id="leftLine"></div>
-        <div id="rightLine"></div>
-        <div id="rope"></div>
-    </main>   
-</body>
-<script>
-
+      <section>
+        <p>player1 wins: <span id="pc1">0</span></p>
+        <p>player2 wins: <span id="pc2">0</span></p>
+        <button id="reset">reset game</button>
+      </section>
+      <div id="leftLine"></div>
+      <div id="rightLine"></div>
+      <div id="rope"></div>
+    </main>
+  </body>
+  <script>
     let rope = document.getElementById("rope");
     let player1Wins = document.getElementById("pc1");
     let player2Wins = document.getElementById("pc2");
@@ -103,51 +102,48 @@
     let player2Counter = 0;
 
     const resetRope = () => {
-        left = 50;
-        rope.style.left = `50%`
-    }   
+      left = 50;
+      rope.style.left = `50%`;
+    };
 
     const resetGame = () => {
-        player1Counter = 0;
-        player2Counter = 0;
-        player1Wins.innerHTML = "0";
-        player2Wins.innerHTML = "0";
-        resetRope();
-    }
+      player1Counter = 0;
+      player2Counter = 0;
+      player1Wins.innerHTML = "0";
+      player2Wins.innerHTML = "0";
+      resetRope();
+    };
 
-    resetButton.addEventListener("click", resetGame); 
+    resetButton.addEventListener("click", resetGame);
 
     const minusOffset = () => {
       left -= 1;
       rope.style.left = `${left}%`;
-      if(left === 20){
+      if (left === 20) {
         resetRope();
         player1Counter += 1;
         player1Wins.innerHTML = player1Counter;
       }
-    }
+    };
 
     const addOffset = () => {
       left += 1;
       rope.style.left = `${left}%`;
-      if(left === 80){
+      if (left === 80) {
         player2Counter += 1;
         player2Wins.innerHTML = player2Counter;
         resetRope();
       }
-    }
-    
+    };
+
     document.onkeydown = keypressed => {
-
-        if(keypressed.key === "a"){
-            minusOffset();
-            console.log(left);
-        } else if(keypressed.key === "d"){
-            addOffset();
-            console.log(left);
-        }
-    }
-
-
-</script>
+      if (keypressed.key === "a") {
+        minusOffset();
+        console.log(left);
+      } else if (keypressed.key === "d") {
+        addOffset();
+        console.log(left);
+      }
+    };
+  </script>
 </html>
